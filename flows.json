@@ -8799,7 +8799,7 @@
         "version": 3,
         "debugenabled": false,
         "service_domain": "light",
-        "service": "toggle",
+        "service": "turn_on",
         "entityId": "light.bathroom",
         "data": "",
         "dataType": "json",
@@ -10481,7 +10481,7 @@
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
-        "haltifstate": "single",
+        "haltifstate": "double",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "outputs": 2,
@@ -10775,6 +10775,73 @@
             ],
             []
         ]
+    },
+    {
+        "id": "e24c139fdf35e2a1",
+        "type": "http request",
+        "z": "62f232c2.0dd08c",
+        "name": "Open Gate",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://autoremotejoaomgcd.appspot.com/sendmessage?key=dehN4nHmHX8:APA91bGuJanPv13NhdwmDxaEEH8oxtXWFo579YlKS71W5DbTuEUwKrKoAufpLokr_dFJNKkI_7K8s3kV0lagy2t_NacYpQiy9ZR-eWM-8FMG6Z7UySu8Kdg6hnqrltX0MiWdJtTHafVo&message=open_gate&target=Philip%20phone",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 970,
+        "y": 2780,
+        "wires": [
+            [
+                "9103c9e350b82e48"
+            ]
+        ]
+    },
+    {
+        "id": "3d7655bdd6ac8ebb",
+        "type": "inject",
+        "z": "62f232c2.0dd08c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 800,
+        "y": 2780,
+        "wires": [
+            [
+                "e24c139fdf35e2a1"
+            ]
+        ]
+    },
+    {
+        "id": "9103c9e350b82e48",
+        "type": "debug",
+        "z": "62f232c2.0dd08c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 2780,
+        "wires": []
     },
     {
         "id": "3585a77d.6fe258",
@@ -29329,32 +29396,7 @@
         "y": 420,
         "wires": [
             [
-                "7939b5c2a5491388"
-            ]
-        ]
-    },
-    {
-        "id": "7939b5c2a5491388",
-        "type": "delay",
-        "z": "ca1de0f6be3a0992",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 2560,
-        "y": 420,
-        "wires": [
-            [
-                "2df530d4169084ad"
+                "7b81e13aea88f73c"
             ]
         ]
     },
@@ -29720,6 +29762,24 @@
         ]
     },
     {
+        "id": "7b81e13aea88f73c",
+        "type": "stoptimer",
+        "z": "ca1de0f6be3a0992",
+        "duration": "5",
+        "units": "Second",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "5s",
+        "x": 2550,
+        "y": 420,
+        "wires": [
+            [
+                "2df530d4169084ad"
+            ],
+            []
+        ]
+    },
+    {
         "id": "ad7db63fd5e613e9",
         "type": "function",
         "z": "5ca789d00f20faee",
@@ -29993,7 +30053,8 @@
         "name": "events",
         "links": [
             "3cc2b548fda3e6ca",
-            "65d106419a71ef77"
+            "65d106419a71ef77",
+            "24191a014559fa48"
         ],
         "x": 135,
         "y": 80,
@@ -32573,6 +32634,102 @@
         "statusType": "auto",
         "x": 720,
         "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a01d2f41ad70865d",
+        "type": "server-state-changed",
+        "z": "5ca789d00f20faee",
+        "name": "REX",
+        "server": "7d575fd3.be153",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.rex_action",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "single",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "318431186233f54f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "318431186233f54f",
+        "type": "function",
+        "z": "5ca789d00f20faee",
+        "name": "event",
+        "func": "let user = msg.payload;\nmsg.payload = [{\n    localTime: new Date(),\n    eventType: \"REX\"\n}]\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 140,
+        "wires": [
+            [
+                "24191a014559fa48"
+            ]
+        ]
+    },
+    {
+        "id": "24191a014559fa48",
+        "type": "link out",
+        "z": "5ca789d00f20faee",
+        "name": "identified",
+        "mode": "link",
+        "links": [
+            "f2c099fe29a39b82"
+        ],
+        "x": 355,
+        "y": 140,
         "wires": []
     }
 ]
