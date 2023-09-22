@@ -8,7 +8,7 @@
         "node-red-contrib-moment": "4.0.0",
         "node-red-contrib-state-machine": "1.2.0",
         "node-red-contrib-stoptimer": "0.0.7",
-        "node-red-contrib-better-sftp": "0.0.11",
+        "node-red-contrib-better-sftp": "0.0.12",
         "node-red-contrib-eiscp": "0.4.0",
         "node-red-contrib-nook-rfid-album-picker": "0.0.3",
         "node-red-contrib-spotify": "0.1.3",
